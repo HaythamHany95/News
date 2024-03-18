@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screen/category_screen.dart';
+import 'package:news_app/screen/categories/category_screen.dart';
 import 'package:news_app/utils/my_theme.dart';
 
 /// Localization_import
