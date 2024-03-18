@@ -23,7 +23,10 @@ class _SoursesTabState extends State<SoursesTab> {
           selectedIndex = newIndex;
           setState(() {});
         },
+        tabAlignment: TabAlignment.start,
         isScrollable: true,
+        indicatorPadding: EdgeInsets.zero,
+        labelPadding: EdgeInsets.zero,
         indicatorColor: Colors.transparent,
         dividerColor: Colors.transparent,
         overlayColor: const MaterialStatePropertyAll(Colors.transparent),

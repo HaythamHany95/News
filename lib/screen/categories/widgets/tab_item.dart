@@ -11,11 +11,11 @@ class TabItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 10, right: 5, left: 10),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: isSelected ? MyTheme.primaryLightColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(15),
           border: Border.all(
             color: MyTheme.primaryLightColor,
             width: 2,
