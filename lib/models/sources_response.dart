@@ -1,12 +1,12 @@
-class SourceResponse {
+class SourcesResponse {
   String? status;
   String? code;
   String? message;
   List<Source>? sources;
 
-  SourceResponse({this.status, this.code, this.message, this.sources});
+  SourcesResponse({this.status, this.code, this.message, this.sources});
 
-  SourceResponse.fromJson(Map<String, dynamic> json) {
+  SourcesResponse.fromJson(Map<String, dynamic> json) {
     if (json["status"] is String) {
       status = json["status"];
     }
@@ -26,6 +26,8 @@ class SourceResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["status"] = status;
+    data["code"] = code;
+    data["message"] = message;
     if (sources != null) {
       data["sources"] = sources?.map((e) => e.toJson()).toList();
     }

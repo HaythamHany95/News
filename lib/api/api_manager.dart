@@ -4,21 +4,36 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:news_app/api/api_constants.dart';
-import 'package:news_app/models/source_response.dart';
+import 'package:news_app/models/articles_response.dart';
+import 'package:news_app/models/sources_response.dart';
 
 class ApiManager {
-  static Future<SourceResponse?> getNewsSourses() async {
+  /// Fetching News `Sourses`
+  static Future<SourcesResponse?> getNewsSourses() async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.soursesEndpoint,
-        ApiConstants.apiKey);
+        {'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6'});
     try {
       var response = await http.get(url);
       var jsonData = jsonDecode(response.body);
-      return SourceResponse.fromJson(jsonData);
+      return SourcesResponse.fromJson(jsonData);
     } catch (e) {
       throw e;
     }
   }
 
+  /// Fetch News `Articles` by News [Sourse Id]
+  static Future<ArticlesResponse?> getNewsArticles(String sourceID) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint,
+        {'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6', 'sources': sourceID});
+
+    try {
+      var response = await http.get(url);
+      var jsonData = jsonDecode(response.body);
+      return ArticlesResponse.fromJson(jsonData);
+    } catch (e) {
+      throw e;
+    }
+  }
   /**
    * https://newsapi.org/v2/top-headlines/sources?apiKey=
    * 1f947e49d6534e428bdda6cc3e84d7d6

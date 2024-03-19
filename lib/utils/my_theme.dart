@@ -27,6 +27,11 @@ class MyTheme {
       ),
     ),
 
+    ///* ProgressIndicatorThemeData
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: MyTheme.primaryLightColor,
+    ),
+
     ///* TextTheme
     textTheme: TextTheme(
       titleLarge: TextStyle(
