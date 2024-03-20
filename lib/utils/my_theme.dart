@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyTheme {
-  static Color primaryLightColor = Colors.green;
-  static Color whiteColor = Colors.white;
-  static Color redcolor = Colors.red;
-  static Color darkBlueColor = Colors.blue;
-  static Color pinkColor = Colors.pink;
-  static Color brownColor = Colors.brown;
-  static Color blueColor = Colors.blueAccent;
-  static Color yellowColor = Colors.yellow;
-  static Color greyColor = Colors.grey;
-  static Color blackColor = Colors.black;
+  static Color primaryLightColor = const Color(0xff39A552);
+  static Color whiteColor = const Color(0xffFFFFFF);
+  static Color redcolor = const Color(0xffC91C22);
+  static Color darkBlueColor = const Color(0xff003E90);
+  static Color pinkColor = const Color(0xffED1E79);
+  static Color brownColor = const Color(0xffCF7E48);
+  static Color blueColor = const Color(0xff4882CF);
+  static Color yellowColor = const Color(0xffF2D352);
+  static Color greyColor = const Color(0xff79828B);
+  static Color darkGreyColor = const Color(0xff42505C);
+  static Color blackColor = const Color(0xff303030);
 
   static ThemeData lightTheme = ThemeData(
     primaryColor: primaryLightColor,
@@ -35,19 +36,31 @@ class MyTheme {
     ///* TextTheme
     textTheme: TextTheme(
       titleLarge: TextStyle(
+        fontFamily: 'Exo',
         color: whiteColor,
         fontSize: 22,
-        fontWeight: FontWeight.w700,
       ),
       titleMedium: TextStyle(
-        color: blackColor,
-        fontSize: 18,
-        fontWeight: FontWeight.w700,
+        fontFamily: 'Exo',
+        color: primaryLightColor,
+        fontSize: 14,
       ),
-      titleSmall: TextStyle(
+      bodyLarge: TextStyle(
+        fontFamily: 'Poppins',
+        color: darkGreyColor,
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+      ),
+      bodyMedium: TextStyle(
+        fontFamily: 'Poppins',
+        color: darkGreyColor,
+        fontWeight: FontWeight.w500,
+        fontSize: 14,
+      ),
+      bodySmall: TextStyle(
+        fontFamily: 'Poppins',
         color: greyColor,
-        fontSize: 16,
-        fontWeight: FontWeight.w700,
+        fontSize: 12,
       ),
     ),
   );

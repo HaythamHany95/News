@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: MyTheme.lightTheme,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: CategoriesScreen.routeName,
       routes: {
         CategoriesScreen.routeName: (context) => const CategoriesScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),

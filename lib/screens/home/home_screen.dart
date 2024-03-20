@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-
-/// Localization_import
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/models/sources_response.dart';
 import 'package:news_app/screens/home/widgets/news_sourses/sourses_tab_bar.dart';
+
+/// Localization_import
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';

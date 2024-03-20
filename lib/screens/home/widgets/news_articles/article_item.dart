@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/models/articles_response.dart';
 import 'package:news_app/models/sources_response.dart';
+import 'package:news_app/screens/home/widgets/news_articles/article_item_view.dart';
 
 class ArticleItem extends StatefulWidget {
   final Source sourse;
@@ -57,7 +58,9 @@ class _ArticleItemState extends State<ArticleItem> {
         var articles = snapshot.data?.articles ?? [];
         return ListView.builder(
           itemCount: articles.length,
-          itemBuilder: (context, i) => Text(articles[i].author ?? ""),
+          itemBuilder: (context, i) => ArticleItemView(
+            article: articles[i],
+          ),
         );
       },
     );
