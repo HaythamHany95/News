@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/categories/categories_screen.dart';
 import 'package:news_app/screens/home/home_screen.dart';
-import 'package:news_app/screens/settings/settings_screen.dart';
 import 'package:news_app/utils/my_theme.dart';
 
 /// Localization_import
@@ -22,11 +20,9 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: MyTheme.lightTheme,
-      initialRoute: CategoriesScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: {
-        CategoriesScreen.routeName: (context) => const CategoriesScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
-        SettingScreen.routeName: (context) => const SettingScreen()
       },
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news_category.dart';
-import 'package:news_app/utils/my_theme.dart';
 
 class CategoryItemView extends StatelessWidget {
   final NewsCategory category;
