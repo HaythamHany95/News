@@ -18,12 +18,12 @@ class ArticleItemView extends StatelessWidget {
     DateTime datePublished = DateTime.parse(date ?? "");
     Size size = MediaQuery.of(context).size;
 
-    // Future<void> _launchUrl(String url) async {
-    //   final Uri uri = Uri.parse(url);
-    //   if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-    //     throw Exception('Could not launch');
-    //   }
-    // }
+    Future<void> openWebPage(String url) async {
+      final Uri uri = Uri.parse(url);
+      if (!await launchUrl(uri, mode: LaunchMode.inAppBrowserView)) {
+        throw Exception('Could not launch');
+      }
+    }
 
     return Container(
       margin: const EdgeInsets.all(20),
@@ -95,7 +95,7 @@ class ArticleItemView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          // _launchUrl(article?.url ?? "");
+                          openWebPage(article?.url ?? "");
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
