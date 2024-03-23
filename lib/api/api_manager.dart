@@ -9,9 +9,11 @@ import 'package:news_app/models/sources_response.dart';
 
 class ApiManager {
   /// Fetching News `Sourses`
-  static Future<SourcesResponse?> getNewsSourses() async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.soursesEndpoint,
-        {'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6'});
+  static Future<SourcesResponse?> getNewsSourses(String categoryId) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.soursesEndpoint, {
+      'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19',
+      'category': categoryId,
+    });
     try {
       var response = await http.get(url);
       var jsonData = jsonDecode(response.body);
@@ -24,7 +26,7 @@ class ApiManager {
   /// Fetch News `Articles` by News [Sourse Id]
   static Future<ArticlesResponse?> getNewsArticles(String sourceID) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint,
-        {'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6', 'sources': sourceID});
+        {'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19', 'sources': sourceID});
 
     try {
       var response = await http.get(url);

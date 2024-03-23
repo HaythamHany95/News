@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/models/articles_response.dart';
 import 'package:news_app/models/sources_response.dart';
+import 'package:news_app/screens/article_details/article_details_screen.dart';
 import 'package:news_app/screens/home/widgets/news_articles/article_item_view.dart';
 
 class ArticleItem extends StatefulWidget {
@@ -58,8 +59,14 @@ class _ArticleItemState extends State<ArticleItem> {
         var articles = snapshot.data?.articles ?? [];
         return ListView.builder(
           itemCount: articles.length,
-          itemBuilder: (context, i) => ArticleItemView(
-            article: articles[i],
+          itemBuilder: (context, i) => InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, ArticleDetailsScreen.routeName,
+                  arguments: articles[i]);
+            },
+            child: ArticleItemView(
+              article: articles[i],
+            ),
           ),
         );
       },

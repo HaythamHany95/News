@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/models/news_category.dart';
 import 'package:news_app/models/sources_response.dart';
 import 'package:news_app/screens/home/widgets/news_sourses/sourses_tab_bar.dart';
 
@@ -7,7 +8,9 @@ import 'package:news_app/screens/home/widgets/news_sourses/sourses_tab_bar.dart'
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+  final NewsCategory category;
+
+  const CategoryDetails({required this.category, super.key});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -17,7 +20,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SourcesResponse?>(
-        future: ApiManager.getNewsSourses(),
+        future: ApiManager.getNewsSourses(widget.category.id ?? ""),
         builder: (context, snapshot) {
           /// [future] is not null, but has not yet completed.
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,7 +36,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 const Text("Something went wrong"),
                 ElevatedButton(
                     onPressed: () {
-                      ApiManager.getNewsSourses();
+                      ApiManager.getNewsSourses(widget.category?.id ?? "");
                       setState(() {});
                     },
                     child: const Text("Try Again"))
@@ -50,7 +53,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 Text(snapshot.data?.message ?? "UnKonwn Error"),
                 ElevatedButton(
                     onPressed: () {
-                      ApiManager.getNewsSourses();
+                      ApiManager.getNewsSourses(widget.category.id ?? "");
                       setState(() {});
                     },
                     child: const Text("Try Again"))

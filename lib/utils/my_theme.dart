@@ -18,12 +18,13 @@ class MyTheme {
 
     ///* AppBarTheme
     appBarTheme: AppBarTheme(
+      foregroundColor: whiteColor,
       color: primaryLightColor,
       centerTitle: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
+          bottomLeft: Radius.circular(50),
+          bottomRight: Radius.circular(50),
         ),
       ),
     ),
@@ -61,6 +62,12 @@ class MyTheme {
         fontFamily: 'Poppins',
         color: greyColor,
         fontSize: 12,
+      ),
+      displayMedium: TextStyle(
+        fontFamily: 'Poppins',
+        color: darkGreyColor,
+        fontWeight: FontWeight.w300,
+        fontSize: 13,
       ),
     ),
   );

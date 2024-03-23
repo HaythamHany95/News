@@ -3,7 +3,9 @@ import 'package:news_app/models/news_category.dart';
 import 'package:news_app/screens/home/widgets/news_categories/category_item_view.dart';
 
 class CategoryFragments extends StatelessWidget {
-  const CategoryFragments({super.key});
+  final Function onCategoryClicked;
+
+  const CategoryFragments({required this.onCategoryClicked, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,14 @@ class CategoryFragments extends StatelessWidget {
                       crossAxisCount: 2,
                       childAspectRatio: 1.1 / 1.2),
                   itemCount: newsCategories.length,
-                  itemBuilder: (context, i) => CategoryItemView(
-                        category: newsCategories[i],
-                        index: i,
+                  itemBuilder: (context, i) => InkWell(
+                        onTap: () {
+                          onCategoryClicked(newsCategories[i]);
+                        },
+                        child: CategoryItemView(
+                          category: newsCategories[i],
+                          index: i,
+                        ),
                       )))
         ],
       ),
