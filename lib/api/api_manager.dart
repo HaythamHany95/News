@@ -25,8 +25,10 @@ class ApiManager {
 
   /// Fetch News `Articles` by News [Sourse Id]
   static Future<ArticlesResponse?> getNewsArticles(String sourceID) async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint,
-        {'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19', 'sources': sourceID});
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint, {
+      'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19',
+      'sources': sourceID,
+    });
 
     try {
       var response = await http.get(url);
@@ -35,6 +37,15 @@ class ApiManager {
     } catch (e) {
       throw e;
     }
+  }
+
+  /// Fetch News `Articles` with [query] of the `User` input in `SearchBar`
+  static Future<ArticlesResponse?> getSearchedNewsArticles(String query) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint,
+        {'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19', 'q': query});
+    var response = await http.get(url);
+    var jsonData = jsonDecode(response.body);
+    return ArticlesResponse.fromJson(jsonData);
   }
   /**
    * https://newsapi.org/v2/top-headlines/sources?apiKey=

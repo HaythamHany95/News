@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/models/news_category.dart';
 import 'package:news_app/screens/home/home_body_contents/categories_fragments.dart';
 import 'package:news_app/screens/home/home_body_contents/category_details.dart';
+import 'package:news_app/screens/home/home_body_contents/search_article.dart';
 import 'package:news_app/screens/home/home_body_contents/settings_tab.dart';
 import 'package:news_app/screens/home/widgets/app_drawer/app_drawer.dart';
 
@@ -61,7 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Text(selectedCategory?.title ?? ""),
               actions: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, SearchArticle.routeName);
+                    },
                     icon: const ImageIcon(
                       AssetImage('assets/images/search_icon.png'),
                       size: 40,
