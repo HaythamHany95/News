@@ -26,7 +26,7 @@ class _AppBarSearchFieldState extends State<AppBarSearchField> {
               fontSize: 14, color: MyTheme.primaryLightColor.withOpacity(0.5)),
           suffixIcon: IconButton(
             onPressed: () {},
-            icon: ImageIcon(
+            icon: ImageIcon( 
               color: MyTheme.primaryLightColor,
               const AssetImage('assets/images/search_icon.png'),
             ),

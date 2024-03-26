@@ -1,7 +1,6 @@
 // ignore_for_file: use_rethrow_when_possible
 
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:news_app/api/api_constants.dart';
 import 'package:news_app/models/articles_response.dart';
@@ -11,7 +10,7 @@ class ApiManager {
   /// Fetching News `Sourses`
   static Future<SourcesResponse?> getNewsSourses(String categoryId) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.soursesEndpoint, {
-      'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19',
+      'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6',
       'category': categoryId,
     });
     try {
@@ -24,10 +23,13 @@ class ApiManager {
   }
 
   /// Fetch News `Articles` by News [Sourse Id]
-  static Future<ArticlesResponse?> getNewsArticles(String sourceID) async {
+  static Future<ArticlesResponse?> getNewsArticles(String sourceID,
+      {int? pageSize, int? page}) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint, {
-      'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19',
+      'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6',
       'sources': sourceID,
+      'pageSize': "$pageSize",
+      'page': "$page"
     });
 
     try {
@@ -42,7 +44,7 @@ class ApiManager {
   /// Fetch News `Articles` with [query] of the `User` input in `SearchBar`
   static Future<ArticlesResponse?> getSearchedNewsArticles(String query) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint,
-        {'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19', 'q': query});
+        {'apiKey': '1f947e49d6534e428bdda6cc3e84d7d6', 'q': query});
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
     return ArticlesResponse.fromJson(jsonData);

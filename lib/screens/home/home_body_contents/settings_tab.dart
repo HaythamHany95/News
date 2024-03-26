@@ -16,10 +16,13 @@ class SettingsTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Language"),
-          DropdownFormField(items: [
-            DropdownMenuItem(value: "English", child: Text("English")),
-            DropdownMenuItem(value: "Arabic", child: Text("Arabic"))
-          ], onChanged: (newValue) {}),
+          DropdownFormField(
+              hintText: "English",
+              items: [
+                DropdownMenuItem(value: "English", child: Text("English")),
+                DropdownMenuItem(value: "Arabic", child: Text("Arabic"))
+              ],
+              onChanged: (newValue) {}),
         ],
       ),
     );
