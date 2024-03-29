@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/api/api_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/models/news_category.dart';
-import 'package:news_app/models/sources_response.dart';
+import 'package:news_app/screens/home/cubit/category_details_viewmodel.dart';
+import 'package:news_app/screens/home/states/source_states.dart';
 import 'package:news_app/screens/home/widgets/news_sourses/sourses_tab_bar.dart';
 
 /// Localization_import
@@ -17,52 +18,48 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
+  var viewModel = CategoryDetailsViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel.getNewsSoursesByCategoryId(widget.category.id ?? "");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<SourcesResponse?>(
-        future: ApiManager.getNewsSourses(widget.category.id ?? ""),
-        builder: (context, snapshot) {
-          /// [future] is not null, but has not yet completed.
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
+    return BlocBuilder<CategoryDetailsViewModel, SourceStates>(
+        bloc: viewModel,
+        builder: ((context, state) {
+          ///* Handling the [SourceStates] here
+
+          if (state is SourceErrorState) {
+            return Center(
+              child: Column(
+                children: [
+                  Text(state.errorMessage ?? ""),
+                  ElevatedButton(
+                    onPressed: () {
+                      viewModel
+                          .getNewsSoursesByCategoryId(widget.category.id ?? "");
+                    },
+                    child: const Text(
+                      "Try Again",
+                    ),
+                  ),
+                ],
+              ),
             );
-
-            ///  When error comes from the client
-          } else if (snapshot.hasError) {
-            return Center(
-                child: Column(
-              children: [
-                const Text("Something went wrong"),
-                ElevatedButton(
-                    onPressed: () {
-                      ApiManager.getNewsSourses(widget.category?.id ?? "");
-                      setState(() {});
-                    },
-                    child: const Text("Try Again"))
-              ],
-            ));
           }
 
-          /// 3) Server (error, success)
-
-          if (snapshot.data?.status != 'ok') {
-            return Center(
-                child: Column(
-              children: [
-                Text(snapshot.data?.message ?? "UnKonwn Error"),
-                ElevatedButton(
-                    onPressed: () {
-                      ApiManager.getNewsSourses(widget.category.id ?? "");
-                      setState(() {});
-                    },
-                    child: const Text("Try Again"))
-              ],
-            ));
+          if (state is SourceSuccessState) {
+            return SoursesTabBar(sources: state.sources ?? []);
           }
-          var sources = snapshot.data?.sources ?? [];
-          return SoursesTabBar(sources: sources);
-          // itemBuilder: (context, i) => Text(sources?[i].name ?? ""));
-        });
+
+          /// (state here is SourceLoadingState)
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }));
   }
 }
