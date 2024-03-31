@@ -7,24 +7,21 @@ import 'package:news_app/data/repository/news_sources/repository/news_sources_re
 import 'package:news_app/data/repository/news_sources/repository/news_sources_repo_impl.dart';
 
 class CategoryDetailsViewModel extends Cubit<SourceStates> {
-  late NewsSourcesRepositoryDelegate newsSourcesRepositoryDelegate;
+  late NewsSourcesRepositoryDelegate repoDelegate;
 
   /// ToDo : Inject Those Dependecies
-  late NewsSourcesRemoteDataSourceDelegate remoteDataSourceDelegate;
+  late NewsSourcesRemoteDataSourceDelegate remoteDelegate;
   ApiManager apiManager = ApiManager();
 
   CategoryDetailsViewModel() : super(SourceLoadingState()) {
-    remoteDataSourceDelegate =
-        NewsSourcesRemoteDataSourceImpl(apiManager: apiManager);
-    newsSourcesRepositoryDelegate =
-        NewsSourcesRepositoryImpl(remoteDelegate: remoteDataSourceDelegate);
+    remoteDelegate = NewsSourcesRemoteDataSourceImpl(apiManager: apiManager);
+    repoDelegate = NewsSourcesRepositoryImpl(remoteDelegate: remoteDelegate);
   }
 
   void getNewsSoursesByCategoryId(String categoryId) async {
     emit(SourceLoadingState());
     try {
-      var respose = await newsSourcesRepositoryDelegate
-          .getNewsSourcesByCategoryId(categoryId);
+      var respose = await repoDelegate.getNewsSourcesByCategoryId(categoryId);
       if (respose?.status == 'error') {
         emit(SourceErrorState(errorMessage: respose?.message));
       }

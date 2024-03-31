@@ -23,7 +23,7 @@ class ApiManager {
   }
 
   /// Fetch News `Articles` by News [Sourse Id]
-  static Future<ArticlesResponse?> getNewsArticles(String sourceID,
+  Future<ArticlesResponse?> getNewsArticles(String sourceID,
       {int? pageSize, int? page}) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.articlesEndpoint, {
       'apiKey': '7e883fc9bfd14d3ba75fca0738b2ca19',
