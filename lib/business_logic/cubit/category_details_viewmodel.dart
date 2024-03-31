@@ -1,22 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/data/api/api_manager.dart';
 import 'package:news_app/business_logic/cubit/states/source_states.dart';
-import 'package:news_app/data/repository/news_sources/data_sources/news_sources_data_sourcs_delegates.dart';
-import 'package:news_app/data/repository/news_sources/data_sources/news_sources_remote_data_source_impl.dart';
 import 'package:news_app/data/repository/news_sources/repository/news_sources_repo_delegate.dart';
-import 'package:news_app/data/repository/news_sources/repository/news_sources_repo_impl.dart';
 
 class CategoryDetailsViewModel extends Cubit<SourceStates> {
-  late NewsSourcesRepositoryDelegate repoDelegate;
+  ///
+  NewsSourcesRepositoryDelegate repoDelegate;
 
-  /// ToDo : Inject Those Dependecies
-  late NewsSourcesRemoteDataSourceDelegate remoteDelegate;
-  ApiManager apiManager = ApiManager();
+  ///// ToDo : Inject Those Dependecies
+  // late NewsSourcesRemoteDataSourceDelegate remoteDelegate;
+  // ApiManager apiManager = ApiManager();
 
-  CategoryDetailsViewModel() : super(SourceLoadingState()) {
-    remoteDelegate = NewsSourcesRemoteDataSourceImpl(apiManager: apiManager);
-    repoDelegate = NewsSourcesRepositoryImpl(remoteDelegate: remoteDelegate);
-  }
+  CategoryDetailsViewModel({required this.repoDelegate})
+      : super(SourceLoadingState());
 
   void getNewsSoursesByCategoryId(String categoryId) async {
     emit(SourceLoadingState());

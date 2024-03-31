@@ -8,6 +8,7 @@ import 'package:news_app/presentation/screens/article_details/article_details_sc
 import 'package:news_app/business_logic/cubit/article_item_viewmodel.dart';
 import 'package:news_app/business_logic/cubit/states/article_states.dart';
 import 'package:news_app/presentation/widgets/news_articles/article_item_view.dart';
+import 'package:news_app/utils/dependency_injection.dart';
 import 'package:news_app/utils/my_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +51,8 @@ class _ArticleItemState extends State<ArticleItem> {
     viewModel.getNewsArticlesBySourceId(widget.sourse.id);
   }
 
-  var viewModel = ArticleItemViewModel();
+  var viewModel = ArticleItemViewModel(
+      repoDelegate: injectNewsArticlesRepositoryDelegate());
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import 'package:news_app/data/models/news_category.dart';
 import 'package:news_app/business_logic/cubit/category_details_viewmodel.dart';
 import 'package:news_app/business_logic/cubit/states/source_states.dart';
 import 'package:news_app/presentation/widgets/news_sourses/sourses_tab_bar.dart';
+import 'package:news_app/utils/dependency_injection.dart';
 
 /// Localization_import
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,7 +19,8 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  var viewModel = CategoryDetailsViewModel();
+  var viewModel = CategoryDetailsViewModel(
+      repoDelegate: injectNewsSourcesRepositoryDelegate());
 
   @override
   void initState() {
