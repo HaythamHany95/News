@@ -4,4 +4,7 @@ abstract class NewsSourcesRemoteDataSourceDelegate {
   Future<SourcesResponse?> getNewsSourcesByCategoryId(String categoryId);
 }
 
-abstract class NewsSourcesCachingDataSourceDelegate {}
+abstract class NewsSourcesCachingDataSourceDelegate {
+  Future<SourcesResponse?> getNewsSourcesByCategoryId(String categoryId);
+  void cachNewsSources(SourcesResponse? sourcesResponse);
+}

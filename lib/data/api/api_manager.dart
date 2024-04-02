@@ -8,6 +8,7 @@ import 'package:news_app/data/models/sources_response.dart';
 
 class ApiManager {
   static ApiManager? _instace;
+
   static ApiManager getInstace() {
     _instace ??= ApiManager._();
     return _instace!;
