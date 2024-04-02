@@ -22,15 +22,13 @@ NewsArticlesRepositoryDelegate injectNewsArticlesRepositoryDelegate() {
 ///* Repository => object DataSource --------------------------------
 NewsSourcesRemoteDataSourceDelegate
     injectNewsSourcesRemoteDataSourceDelegate() {
-  return NewsSourcesRemoteDataSourceImpl(apiManager: injectApiManager());
+  return NewsSourcesRemoteDataSourceImpl(apiManager: ApiManager.getInstace());
 }
 
 NewsArticlesRemoteDataSourceDelegate
     injectNewsArticlesRemoteDataSourceDelegate() {
-  return NewsArticlesRemoteDataSourceImpl(apiManager: injectApiManager());
+  return NewsArticlesRemoteDataSourceImpl(apiManager: ApiManager.getInstace());
 }
 
 ///* DataSource => object ApiManager --------------------------------
-ApiManager injectApiManager() {
-  return ApiManager();
-}
+/// call the singleton

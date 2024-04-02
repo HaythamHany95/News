@@ -16,13 +16,13 @@ class ArticleItemViewModel extends Cubit<ArticleStates> {
   void getNewsArticlesBySourceId(String? sourceId) async {
     emit(ArticleLoadingState());
     try {
-      var respose =
+      var response =
           await repoDelegate.getNewsArticlesBySourceId(sourceId ?? "");
-      if (respose?.status == 'error') {
-        emit(ArticleErrorState(errorMessage: respose?.message));
+      if (response?.status == 'error') {
+        emit(ArticleErrorState(errorMessage: response?.message));
       }
-      if (respose?.status == 'ok') {
-        emit(ArticleSuccessState(articles: respose?.articles ?? []));
+      if (response?.status == 'ok') {
+        emit(ArticleSuccessState(articles: response?.articles ?? []));
       }
     } catch (e) {
       emit(ArticleErrorState(errorMessage: "Something went wrong"));
