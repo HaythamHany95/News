@@ -12,20 +12,24 @@ class NewsSourcesRepositoryImpl implements NewsSourcesRepositoryDelegate {
 
   @override
   Future<SourcesResponse?> getNewsSourcesByCategoryId(String categoryId) async {
-    // if user is online
-    // var connectivityResult = await Connectivity().checkConnectivity() ;
-    // if (connectivityResult == ConnectivityResult.mobile
-    // || connectivityResult == ConnectivityResult.wifi) {
-    var newsSourcesResponse =
-        await remoteDelegate.getNewsSourcesByCategoryId(categoryId);
-    return newsSourcesResponse;
-    // offlineDelegate.cachNewsSources(newsSourcesResponse);
-    //   return newsSourcesResponse;
-    // } else {
-    //   // if user is offline
-    //   var response =
-    //       await offlineDelegate.getNewsSourcesByCategoryId(categoryId);
-    //   return response;
-    // }
+    final List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
+
+    if (connectivityResult.contains(ConnectivityResult.mobile)) {
+      var newsSourcesResponse =
+          await remoteDelegate.getNewsSourcesByCategoryId(categoryId);
+      offlineDelegate.cachNewsSources(newsSourcesResponse);
+      return newsSourcesResponse;
+    } else if (connectivityResult.contains(ConnectivityResult.wifi)) {
+      var newsSourcesResponse =
+          await remoteDelegate.getNewsSourcesByCategoryId(categoryId);
+      offlineDelegate.cachNewsSources(newsSourcesResponse);
+      return newsSourcesResponse;
+    } else if (connectivityResult.contains(ConnectivityResult.none)) {
+      var response =
+          await offlineDelegate.getNewsSourcesByCategoryId(categoryId);
+      return response;
+    }
+    return null;
   }
 }
